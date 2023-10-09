@@ -1,0 +1,41 @@
+{{dump(a)}}
+<table border="2">
+    <tr>
+        <td>id </td>
+        <td> photo</td>
+        <td>username</td>
+        <td>email</td>
+        <td> nb books</td>
+        <td> Action</td>
+    </tr>
+    {% for auth in a %}
+    <tr>
+        
+        <td>{{auth.id}}</td>
+        <td> <img src={{auth.picture}}></td>
+        <td>{{auth.username}}</td>
+        <td>{{auth.email}}</td>
+        <td>{{auth.nb_books}}</td>
+
+        <td>{%if (auth.nb_books>0)%} <input type="submit" value="buy"> {%endif%}
+        
+        <a href="{{path('file',{'n':auth.username})}}">details</a>
+        </td>
+        
+    </tr>
+    {%else%}
+    <tr>
+        <td>
+        le tableau est vide
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+nb authors:{{a|length}}
+{% set books=0 %}
+
+{%for a in a %}
+{% set books=books+a.nb_books %}
+{% endfor %}
+nb books={{books}}

@@ -1,0 +1,30 @@
+<table border="2">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>email</td>
+        <td>age</td>
+        <td>grade</td>
+        <td>Action</td>
+    </tr>
+    {% for a in response %}
+    <tr>
+        <td>{{a.id}}</td>
+        <td>{{a.name}}</td>
+        <td>{{a.email}}</td>
+        <td>{{a.age}}</td>
+        <td>{%if a.calssroom!=null%}
+            {{a.calssroom.name}}
+        {%endif%}</td>
+        <td><a href={{path('remove',{'id':a.id})}}>remove</a>
+            <a href={{path('update',{'id':a.id})}}>update</a>
+        
+        </td>
+    </tr>
+    
+{% endfor %}
+</table>
+
+
+
+
